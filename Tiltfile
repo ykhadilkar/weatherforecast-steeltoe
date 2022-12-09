@@ -1,4 +1,4 @@
-SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='your-registry.io/project/steeltoe-weatherforecast-source') # update registry
+SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='index.docker.io/ykhadilkar/weatherforecast-steeltoe-default') # update registry
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
 NAMESPACE = os.getenv("NAMESPACE", default='default')
 OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > /dev/null ')
@@ -24,4 +24,5 @@ k8s_custom_deploy(
 k8s_resource(NAME, port_forwards=["8080:8080"],
             extra_pod_selectors=[{'serving.knative.dev/service': 'weatherforecast-steeltoe'}])
 
-allow_k8s_contexts('<context>') # update the context
+#allow_k8s_contexts('<context>') # update the context
+allow_k8s_contexts('tkg-large-admin@tkg-large')
